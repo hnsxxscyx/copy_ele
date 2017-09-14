@@ -39,12 +39,15 @@
 </script>
 
 <style lang="scss" scope>
-  @import url('./common/css/icon.scss');
+  @import url('./common/css/index.scss');
   .tab {
         list-style: none;
         display: flex;
         line-height: (80rem/75);
         font-size: (28rem/75);
+        border:1px solid rgba(7,17,27,0.2);
+        border-left: none;
+        border-right: none;
         li {
             flex-grow: 1;
             text-align: center;
