@@ -2,10 +2,10 @@
   <div class="header">
     <div class='logo'><img :src="seller.avatar" alt=""></div>
     <div class='information'>
-      <p class='name'><span class='brand icon'></span>{{seller.name}}</p>
+      <p class='name'><v-icon :form='"brand"' class='icon'></v-icon>{{seller.name}}</p>
       <p class='description'>{{seller.description}}/{{seller.deliveryTime}}分钟送达</p>
       <p v-if='seller.supports'  @click='showDetail' class='support'>
-        <span :class="[supportIcon[seller.supports[0]['type']]]" class='icon'></span>
+        <v-icon :form="seller.supports[0]['type']" class='icon'></v-icon>
         {{seller.supports[0].description}}
       </p>
       <span v-if='seller.supports'  @click='showDetail' class="support-num" ><p>{{seller.supports.length}}个<i class="icon-keyboard_arrow_right"></i></p>
@@ -23,7 +23,7 @@
           </div>
           <ul class="supportDetail" v-if='seller.supports'>
             <li v-for='(supportItem,index) in seller.supports' :key='index'>
-              <span :class="supportIcon[supportItem['type']]" class="icon"></span>
+              <v-icon :form="supportItem['type']" class="icon"></v-icon>
               {{supportItem.description}}</li>
           </ul>
           <div class="partition" v-if='seller.bulletin'>
@@ -40,11 +40,11 @@
 
 <script  type="text/ecmascript6">
     import star from '../star/star'
+    import icon from '../icon/icon'
     export default{
       data(){
         return{
           detailShow:false,
-          supportIcon:['decrease','discount','special','invoice','guarantee']
         }
       },
       methods: {
@@ -61,7 +61,8 @@
         }
       },
       components: {
-        'v-star':star
+        'v-star':star,
+        'v-icon':icon
       }
     }
 </script>
@@ -99,7 +100,6 @@
         line-height: 36px;
         .brand{
           margin-right: (12rem/75);
-          vertical-align: bottom;
           width: 60px;
           height: 36px;
         }
@@ -111,11 +111,8 @@
       .support{
         font-size: 20px;
         .icon{
-          display: inline-block;
           width: 24px;
           height: 24px;
-          vertical-align: bottom;
-          letter-spacing: 0;
         }
       }
       .support-num{
@@ -182,10 +179,8 @@
             margin: 0;
             width: (224rem/75);
             height: 3px;
-            // line-height: (28rem/75);
             border: none;
             background-color: rgba(255,255,255,0.2);
-            // vertical-align: middle;
             align-self:center;
           }
           h4{
@@ -205,7 +200,6 @@
             line-height: 24px;
             margin-bottom: 24px;
             span{
-              vertical-align: text-bottom;
               width: 32px;
               height: 32px;
             }
@@ -226,31 +220,6 @@
       h3,h4{
         color: rgb(255,255,255);
         font-weight: 700;
-      }
-    }
-    .icon{
-      display: inline-block;
-      background-size: cover;
-      &.decrease{
-        @include bg-img('decrease_1');
-      }
-      &.guarantee{
-        @include bg-img('guarantee_1');
-      }
-      &.discount{
-        @include bg-img('discount_1');
-      }
-      &.invoice{
-        @include bg-img('invoice_1');
-      }
-      &.special{
-        @include bg-img('special_1');
-      }
-      &.brand{
-        @include bg-img('brand');
-      }
-      &.bulletin{
-        @include bg-img('bulletin');
       }
     }
   }
