@@ -1,13 +1,14 @@
 <template>
-  <span class="icon" :class="form"></span>
+  <span class="icon" :class="supportIcon[form]?supportIcon[form]:form"></span>
 </template>
 
 <script  type="text/ecmascript6">
     export default{
-        props: {
-            form:{
-                type:String
-            }
+        props: ['form'],
+        data(){
+          return {
+            supportIcon:['decrease','discount','special','invoice','guarantee']
+          }
         }
     }
 </script>
