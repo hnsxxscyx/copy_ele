@@ -215,7 +215,8 @@
         height: (128rem/75);
         text-align: center;
         font-size: (65rem/75);
-        color: rgba(255,255,255,0.5)
+        color: rgba(255,255,255,0.5);
+        margin-bottom: 1rem;
       }
       h3,h4{
         color: rgb(255,255,255);

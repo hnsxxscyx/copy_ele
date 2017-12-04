@@ -1,6 +1,6 @@
 <template>
   <div class="star">
-      <span v-for='classItem in classItems' v-bind:class='classItem'></span>
+      <span v-for='(classItem,index) in classItems' :class='classItem' :key="index"></span>
   </div>
 </template>
 

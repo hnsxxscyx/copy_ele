@@ -6,44 +6,52 @@
         <li><router-link to='/ratings'>评价</router-link></li>
         <li><router-link to='/seller'>商家</router-link></li>
     </ul>
-    <router-view>
+    <router-view :goods="goods" :seller="seller" :ratings="ratings">
     </router-view>
   </div>
 </template>
 
 <script type="text/ecmascript6">
     import header from './components/header/header'
-    import content from './components/content/content'
     import axios from 'axios'
 
   
     export default{
       data(){
-        return {seller:{}}
+        return {
+          seller:{},
+          goods:{},
+          ratings:{}
+        }
       },
       created() {
         // this指向vue实例
         var that = this
         axios.get('../static/data.json').then(function (response){
           that.seller = response.data.seller
-          console.log(this.seller)
+          that.goods = response.data.goods
+          that.ratings = response.data.ratings
         }).catch(function (error){
-          console.log(error)
         })
       },
       components: {
         'v-header':header,
-        'v-content':content
       }
     }
 </script>
 
 <style lang="scss" scope>
   @import url('./common/css/index.scss');
+  #app{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
   .tab {
         list-style: none;
         display: flex;
         line-height: (80rem/75);
+        flex:0 0 (80rem/75);
         font-size: (28rem/75);
         border:1px solid rgba(7,17,27,0.2);
         border-left: none;
